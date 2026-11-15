@@ -1,0 +1,39 @@
+# Doxygen configuration for the portfolio's TypeScript sources.
+# Generate with:  doxygen Doxyfile   (or: npm run docs)
+# Output:         docs/api/html/index.html
+#
+# Doxygen has no TypeScript parser. INPUT_FILTER runs every .ts/.tsx file
+# through scripts/doxygen-filter.mjs, which uses the TypeScript compiler to
+# strip types and JSX while keeping all comments; Doxygen then parses plain
+# JavaScript. Requires Node and an `npm ci` first (it uses the project's
+# TypeScript). Line numbers in "Definition at line" refer to that filtered
+# output, so source browsing is turned off to avoid misleading links.
+
+PROJECT_NAME           = "Maunesh Solanki portfolio"
+PROJECT_BRIEF          = "Embedded systems portfolio: React, TypeScript, Vite"
+OUTPUT_DIRECTORY       = docs/api
+INPUT                  = src scripts README.md FLOW.md
+FILE_PATTERNS          = *.ts *.tsx *.mjs *.md
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */node_modules/*
+EXTENSION_MAPPING      = ts=JavaScript tsx=JavaScript mjs=JavaScript
+USE_MDFILE_AS_MAINPAGE = README.md
+MARKDOWN_SUPPORT       = YES
+EXTRACT_ALL            = YES
+INPUT_FILTER           = "node scripts/doxygen-filter.mjs"
+FILTER_SOURCE_FILES    = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+JAVADOC_AUTOBRIEF      = NO
+OPTIMIZE_OUTPUT_JAVA   = YES
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+SOURCE_BROWSER         = NO
+INLINE_SOURCES         = NO
+GENERATE_TREEVIEW      = YES
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = .
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_LOGFILE           = docs/api/doxygen-warnings.log
