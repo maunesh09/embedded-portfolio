@@ -223,7 +223,7 @@ CH4 blue).
 | Home hero | `src/components/Oscilloscope.tsx` | Four simulated channels (RF burst, PWM, audio tone, power rail) with channel toggles, timebase and Run/Stop; measurements match the drawn signals |
 | Home | `src/components/Multimeter.tsx` | Rotary dial switches between experience, education and location readings |
 | Home | `src/components/LogicAnalyzer.tsx` | Encodes your name as real UART, SPI or I²C waveforms; hover or tab to decode each byte |
-| Home | `src/components/PcbExplorer.tsx` | A board with MCU, flash, PMIC, antenna and SWD header; pulses travel the copper; selecting a part explains the work done there |
+| Home | `src/components/PcbExplorer.tsx` | A two-layer board (Rev B): battery connector, regulator, MCU with crystal and decoupling, flash, vertical antenna, SWD header and test pads; pulses travel the copper; selecting a part explains the work done there |
 | Projects | `src/components/ProjectList.tsx` | Projects as scope channels; trace shape shows status (square = implemented, bursts = in progress, dashed = concept) |
 | ESP32 project | `src/interactive/ProtocolSim.tsx` | Heartbeat/ACK state machine you can drive, drop packets in, or disconnect |
 | Nordic project | `src/interactive/ChannelSounding.tsx` | Phase-based ranging explainer with distance and noise sliders (simulated data) |

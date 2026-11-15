@@ -275,14 +275,34 @@ Time is sampled at two ticks per bit, so clock edges can fall mid-bit for SPI an
 
 ### Multimeter (`components/Multimeter.tsx`)
 
-Four dial positions (EXP, FOCUS, EDU, LOC) are real buttons. Selecting one rotates the
-pointer and updates the readout in an `aria-live` region.
+Four dial positions (EXP, FOCUS, EDU, LOC). The knob is a real control (`role="slider"`):
+click or tap advances to the next position, dragging turns it and snaps to the nearest
+position (`nearestMode()` maps the pointer angle), and arrow keys, Home and End work when
+it is focused. The labels around the dial are buttons that jump straight to a position.
+The readout updates in an `aria-live` region.
 
 ### PCB explorer (`components/PcbExplorer.tsx`)
 
-The board is grouped into five areas: MCU and clock, flash, radio, power, and debug.
-Hover previews an area; click or keyboard focus pins it. CSS animates dashes along the
-copper (amber data, cyan power, magenta RF, blue debug) and blinks the status LED.
+The board (Rev B) is grouped into five areas: MCU and clock, flash, radio, power, and
+debug and test. Hover previews an area; click or keyboard focus pins it. CSS animates
+dashes along the copper (amber data, cyan power, magenta RF, blue debug) and blinks the
+status LED.
+
+The drawing follows real layout practice so it reads correctly to a hardware engineer:
+
+| Practice | How the board shows it |
+|---|---|
+| Straight power entry | Battery + runs straight into the regulator's VIN, battery − straight into its GND pin |
+| Tombstone avoidance | Capacitors on the power rail stand off the wide trace and connect through thin necks of equal width on both pads |
+| Decoupling | A 100 nF capacitor beside each MCU supply pin, plus a bulk capacitor at the power entry |
+| Crystal | Placed against the MCU's clock pins, with a load capacitor on each side to ground |
+| Antenna keep-out | No vias, parts or mounting hardware near the edge antenna; three mounting holes |
+| Ground stitching | A sparse ring of vias around the board edge |
+| Test access | Pads for 3V3, GND, SWDIO, SWCLK, CLK (SPI clock, not the crystal), RX and TX, each beside its net |
+| Non-crossing routes | SPI and SWD traces are ordered so no run crosses another on the same layer |
+
+`STITCH` holds the stitching-via coordinates, and `GndVia` draws both part-ground and
+stitching vias.
 
 ### Heartbeat simulator (`interactive/ProtocolSim.tsx`)
 

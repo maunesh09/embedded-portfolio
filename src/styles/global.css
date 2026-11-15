@@ -3075,7 +3075,7 @@ body {
   align-items: start;
 }
 .pcb-board {
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 14px;
   border: 1px solid var(--line);
   background: var(--screen);
@@ -3182,8 +3182,26 @@ body {
   fill: #a9a9a4;
   stroke: #d9d9d2;
 }
-.pcb-usb {
-  fill: #2a2a28;
+.pcb-jst {
+  fill: #e8dfc6;
+  stroke: #f5efdf;
+}
+.pcb-jst-slot {
+  fill: #5a5340;
+}
+.pcb-wire {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.pcb-wire-red {
+  stroke: #c94a3e;
+}
+.pcb-wire-black {
+  stroke: #262626;
+}
+.pcb-cap-bulk {
+  fill: #a8885a;
 }
 .pcb-cap {
   fill: #c9a36b;
@@ -3526,4 +3544,30 @@ body {
 }
 .osc-tb output {
   white-space: nowrap;
+}
+
+/* Multimeter knob is a real control: click, drag or arrow keys */
+.dmm-dial {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  transition: box-shadow 0.15s;
+}
+.dmm-dial:active {
+  cursor: grabbing;
+}
+.dmm-dial:hover {
+  box-shadow: 0 6px 0 #0b0a08, 0 0 0 6px #2f2c25, 0 0 0 8px var(--accent-soft);
+}
+.dmm-dial:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 10px;
+  border-radius: 50%;
+}
+
+/* Test pads: bare copper targets for probing */
+.pcb-tp {
+  fill: #e0b04f;
+  stroke: #f3e2b0;
+  stroke-width: 1.5;
 }
